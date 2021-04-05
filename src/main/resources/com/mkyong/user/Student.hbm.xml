@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.mkyong.user.Student" table="student_rel">
+
+		<id name="id">
+			<generator class="assigned">
+				<param name="property">address</param>
+			</generator>
+		</id>
+
+		<property name="school" />
+		<property name="username" />
+
+		<set name="contacts" cascade="all" lazy="false">
+			<key column="studentId" />
+			<one-to-many class="com.mkyong.user.Contact" />
+		</set>
+
+		<one-to-one name="address" class="com.mkyong.user.Address"
+			cascade="all" />
+
+	</class>
+
+	<query name="getStudents">
+		from Student s
+	</query>
+</hibernate-mapping>

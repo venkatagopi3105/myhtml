@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.mkyong.many_to_many.Course" table="courses_mtom">
+
+		<id name="courseId" column="courseid" />
+
+		<property name="courseName" column="coursename" length="20" />
+		<property name="duration" />
+
+		<set name="students" inverse="false" cascade="all"
+			table="students_courses">
+
+			<key column="course_id" />
+			<many-to-many class="com.mkyong.many_to_many.Student" column="student_id " />
+
+		</set>
+
+	</class>
+
+</hibernate-mapping>
